@@ -1,14 +1,13 @@
-class Solution(object):
-    def numberOfSubarrays(self, nums, k):
-        n = len(nums)
-        cnt = [0] * (n + 1)
-        cnt[0] = 1
-        ans = 0
-        t = 0
-        for v in nums:
-            t += v & 1
-            if t - k >= 0:
-                ans += cnt[t - k]
-            cnt[t] += 1
-        return ans
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        count = 0
+        odd_count = 0
+        prefix = {0: 1}
         
+        for num in nums:
+            if num % 2:
+                odd_count += 1
+            count += prefix.get(odd_count - k, 0)
+            prefix[odd_count] = prefix.get(odd_count, 0) + 1
+            
+        return count
