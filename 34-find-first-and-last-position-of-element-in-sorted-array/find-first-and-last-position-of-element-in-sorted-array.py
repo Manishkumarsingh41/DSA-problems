@@ -1,16 +1,15 @@
-class Solution:
+class Solution(object):
     def searchRange(self, nums, target):
-        if target not in nums:
-            return [-1, -1]
+        start = -1
+        end = -1
 
         for i in range(len(nums)):
-            if nums[i] == target:
-                first = i
-                break
+            if nums[i] == target and start == -1:
+                start = i
 
-        for j in range(len(nums) - 1, -1, -1):
+        for j in range(len(nums)-1, -1, -1):
             if nums[j] == target:
-                last = j
+                end = j
                 break
 
-        return [first, last]
+        return [start, end]
