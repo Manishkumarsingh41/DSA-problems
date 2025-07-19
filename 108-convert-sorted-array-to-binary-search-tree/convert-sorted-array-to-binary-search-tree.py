@@ -1,9 +1,10 @@
-class Solution:
+class Solution(object):
     def sortedArrayToBST(self, nums):
-        if not nums:
-            return None
-        mid = len(nums) // 2
-        root = TreeNode(nums[mid])
-        root.left = self.sortedArrayToBST(nums[:mid])
-        root.right = self.sortedArrayToBST(nums[mid+1:])
-        return root
+        def dfs(l, r):
+            if l > r: return None
+            m = (r + l) // 2
+            node = TreeNode(nums[m])
+            node.left = dfs(l, m - 1)
+            node.right = dfs(m + 1, r)
+            return node
+        return dfs(0, len(nums) - 1)
