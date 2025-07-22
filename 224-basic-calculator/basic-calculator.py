@@ -7,7 +7,7 @@ class Solution:
 
         for char in s:
             if char.isdigit():
-                num = num * 10 + int(char)
+                num = num*10 + int(char)
             elif char in '+-':
                 result += sign * num
                 sign = 1 if char == '+' else -1
