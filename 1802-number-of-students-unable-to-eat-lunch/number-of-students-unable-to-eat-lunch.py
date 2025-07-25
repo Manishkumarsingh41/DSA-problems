@@ -1,13 +1,15 @@
-class Solution:
+class Solution(object):
     def countStudents(self, students, sandwiches):
-        zero = students.count(0)
-        one = students.count(1)
+        rem = len(students)
+        cnt = {0: 0, 1: 0}
+
+        for s in students:
+            cnt[s] += 1
 
         for s in sandwiches:
-            if s == 0:
-                if zero == 0: return one
-                zero -= 1
+            if cnt[s] > 0:
+                rem -= 1
+                cnt[s] -= 1
             else:
-                if one == 0: return zero
-                one -= 1
-        return 0
+                return rem
+        return rem
