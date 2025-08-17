@@ -1,23 +1,17 @@
-class Solution:
+class Solution(object):
     def countAndSay(self, n):
-        # Agar n == 1 hai toh sidha "1" return karna hai
-        if n == 1:
-            return "1"
-
-        s = "1"  # starting string hamesha "1" hoti hai
-        for _ in range(n - 1):  # n-1 baar repeat karna hai process
+        result = "1"  # base case
+        
+        for _ in range(1, n):  
+            new_result = ""  
             i = 0
-            t = ""  # yaha hum nayi string banayenge
-            while i < len(s):
-                j = i
-                # yaha par consecutive same digits count karenge
-                while j < len(s) and s[j] == s[i]:
-                    j += 1
-                # ab nayi string me count + digit add karenge
-                t += str(j - i) + s[i]
-                # i ko aage badha do next group ke liye
-                i = j
-            # ab current string ko update kar do naye banaye hue se
-            s = t
-        # final answer return karange
-        return s
+            while i < len(result):
+                count = 1  # digit count start
+                while i + 1 < len(result) and result[i] == result[i + 1]:
+                    i += 1
+                    count += 1  # same digit mila toh count++
+                new_result += str(count) + result[i]  # count+digit add
+                i += 1
+            result = new_result  # update result
+        
+        return result
