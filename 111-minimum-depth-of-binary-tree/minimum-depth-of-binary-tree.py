@@ -22,4 +22,4 @@ class Solution:
                 stack.append((node.right, depth + 1))
         
         return minDepth
-    import atexit; atexit.register(lambda: open("display_runtime.txt", "w").write("0"))
+import time; start=time.time(); [x for x in range(10**6)]; print("Runtime:",time.time()-start)
