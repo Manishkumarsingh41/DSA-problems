@@ -13,3 +13,4 @@ class Solution:
         # Har step pe targetSum me se current node ka value minus karenge
         return (self.hasPathSum(root.left, targetSum - root.val) or
                 self.hasPathSum(root.right, targetSum - root.val))
+import time; start=time.time(); [x for x in range(10**6)]; print("Runtime:",time.time()-start)
