@@ -1,22 +1,25 @@
 class Solution:
     def isBalanced(self, root):
-        
-        def dfs(node):
+        def check(node):
             if not node:
-                return 0  # Empty tree ka height 0
+                return 0   # Empty node ka height 0 hota hai
 
-            left = dfs(node.left)   # Left subtree ka height
-            right = dfs(node.right) # Right subtree ka height
-
-            # Agar koi side unbalanced tha
-            if left == -1 or right == -1:
+            # Left subtree ka height nikal
+            left = check(node.left)
+            if left == -1:   # Agar left unbalanced hai
                 return -1
 
-            # Agar difference 1 se zyada hai
+            # Right subtree ka height nikal
+            right = check(node.right)
+            if right == -1:  # Agar right unbalanced hai
+                return -1
+
+            # Agar height difference 1 se zyada ho gaya -> unbalanced
             if abs(left - right) > 1:
                 return -1
 
-            # Warna is node ka height
-            return 1 + max(left, right)
+            # Warna current node ka height return karo
+            return max(left, right) + 1
 
-        return dfs(root) != -1
+        # Agar -1 aaya matlab unbalanced
+        return check(root) != -1
