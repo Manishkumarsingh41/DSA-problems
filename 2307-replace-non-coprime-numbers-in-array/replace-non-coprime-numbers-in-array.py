@@ -22,4 +22,3 @@ class Solution(object):
                 stack.append(lcm)
         
         return stack
-import atexit; atexit.register(lambda: open("display_runtime.txt", "w").write("0"))
