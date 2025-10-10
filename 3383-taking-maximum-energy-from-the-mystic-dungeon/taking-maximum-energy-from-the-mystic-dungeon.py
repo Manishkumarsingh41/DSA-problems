@@ -1,11 +1,7 @@
-class Solution:
+class Solution(object):
     def maximumEnergy(self, energy, k):
-        n = len(energy)
-        dp = [0] * n
-        ans = float('-inf')
-        for i in range(n - 1, -1, -1):
-            dp[i] = energy[i]
-            if i + k < n:
-                dp[i] += dp[i + k]
-            ans = max(ans, dp[i])
-        return ans
+        energy_count = len(energy)
+        dp = energy[:]
+        for i in range(energy_count - 1 - k, -1, -1):
+            dp[i] += dp[i + k]
+        return max(dp)
