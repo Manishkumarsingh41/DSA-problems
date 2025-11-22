@@ -1,3 +1,13 @@
-class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        return sum(range(len(nums)+1)) - sum(nums)
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        expt = n*(n+1)/2
+        sum = 0
+        for num in nums:
+            sum +=num
+        return expt - sum
+        
