@@ -1,11 +1,21 @@
 class Solution(object):
     def moveZeroes(self, nums):
-        n = len(nums)
-        for i in range(n):
-            swapped = False
-            for j in range(0, n-i-1):
-                if nums[j] == 0 and nums[j+1] != 0:
-                    nums[j], nums[j+1] = nums[j+1], nums[j]
-                    swapped = True
-            if not swapped:  # Agar koi swap nahi hua, toh break karo
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        if len(nums)==1:
+            return
+        i=0
+        while i < len(nums):
+            if nums[i] == 0:
                 break
+            i+=1
+        if i == len(nums):
+            return
+        j =i+1
+        while j < len(nums):
+            if nums[j]!=0:
+                nums[i],nums[j]=nums[j],nums[i]
+                i+=1
+            j+=1
