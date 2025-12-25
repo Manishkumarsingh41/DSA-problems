@@ -1,6 +1,5 @@
-class Solution(object):
-    def maximumHappinessSum(self, happiness, k):
-
+class Solution:
+    def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
         happiness.sort(reverse=True)
         
         total = 0
