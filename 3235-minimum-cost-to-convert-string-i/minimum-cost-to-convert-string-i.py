@@ -1,30 +1,39 @@
 class Solution:
     def minimumCost(self, source, target, original, changed, cost):
-        INF = 10**18
-        dist = [[INF]*26 for _ in range(26)]
+        from heapq import heappush, heappop
         
-        for i in range(26):
-            dist[i][i] = 0
+        INF = 10**18
+        adj = [[] for _ in range(26)]
         
         for o, c, w in zip(original, changed, cost):
-            x = ord(o) - 97
-            y = ord(c) - 97
-            dist[x][y] = min(dist[x][y], w)
+            u = ord(o) - 97
+            v = ord(c) - 97
+            adj[u].append((v, w))
         
-        for k in range(26):
-            for i in range(26):
-                for j in range(26):
-                    if dist[i][k] + dist[k][j] < dist[i][j]:
-                        dist[i][j] = dist[i][k] + dist[k][j]
+        dist = [[INF] * 26 for _ in range(26)]
+        
+        for src in range(26):
+            heap = [(0, src)]
+            dist[src][src] = 0
+            
+            while heap:
+                d, u = heappop(heap)
+                if d > dist[src][u]:
+                    continue
+                for v, w in adj[u]:
+                    nd = d + w
+                    if nd < dist[src][v]:
+                        dist[src][v] = nd
+                        heappush(heap, (nd, v))
         
         ans = 0
         for s, t in zip(source, target):
             if s == t:
                 continue
-            x = ord(s) - 97
-            y = ord(t) - 97
-            if dist[x][y] == INF:
+            u = ord(s) - 97
+            v = ord(t) - 97
+            if dist[u][v] == INF:
                 return -1
-            ans += dist[x][y]
+            ans += dist[u][v]
         
         return ans
