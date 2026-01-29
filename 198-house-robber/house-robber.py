@@ -1,6 +1,11 @@
-class Solution(object):
+class Solution:
     def rob(self, nums):
-        prev, curr = 0, 0
-        for num in nums:
-            prev, curr = curr, max(curr, prev + num)
-        return curr
+        prev2 = 0
+        prev1 = 0
+        
+        for money in nums:
+            curr = max(prev1, money + prev2)
+            prev2 = prev1
+            prev1 = curr
+        
+        return prev1
