@@ -1,5 +1,15 @@
 class Solution:
     def reverseBits(self, n):
-        bits = bin(n)[2:].zfill(32)
-        reversed_bits = bits[::-1]
-        return int(reversed_bits, 2)
+        
+        for i in range(16):
+            j = 31 - i                      
+
+            lower_bit = (n >> i) & 1        
+            upper_bit = (n >> j) & 1        
+
+            
+            if lower_bit != upper_bit:
+                n ^= (1 << i)               
+                n ^= (1 << j)               
+
+        return n
