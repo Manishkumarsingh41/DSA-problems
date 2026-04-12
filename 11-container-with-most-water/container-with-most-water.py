@@ -1,15 +1,20 @@
-class Solution:
+class Solution(object):
     def maxArea(self, height):
-        l = 0
-        r = len(height) - 1
-        m = 0
-        while l < r:
-            if height[l] >= height[r]:
-                tmp = height[r] * (r - l)
-                m = max(m, tmp)
-                r -= 1
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        l=0
+        r= len(height)-1
+        max_area=float('-inf')
+
+        while l<r:
+            area =min(height[l],height[r])*(r-l)
+            max_area =max(max_area ,area)
+
+            if height [l]< height[r]:
+                l +=1
             else:
-                tmp = height[l] * (r - l)
-                m = max(m, tmp)
-                l += 1
-        return m
+                r -=1
+        return max_area
+        
