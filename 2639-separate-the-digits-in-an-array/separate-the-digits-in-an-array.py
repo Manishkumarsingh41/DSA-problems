@@ -1,6 +1,6 @@
 class Solution:
     def separateDigits(self, nums):
-        
+
         result = []
 
         for num in nums:
