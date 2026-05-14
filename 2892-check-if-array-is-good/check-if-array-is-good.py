@@ -1,4 +1,4 @@
 class Solution:
     def isGood(self, nums: List[int]) -> bool:
-        return {*nums}== {*range(1,n:=len(nums))} and nums.count(n-1) ==2
+        return sum(nums) == -~ (n:= len(nums))*n//2-1 and n-1==len({*nums})== max(nums)
         
