@@ -1,0 +1,22 @@
+class Solution(object):
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        mapping = {0: -1}
+        running_sum = 0
+        
+        for i, num in enumerate(nums):
+            
+            running_sum = (running_sum + num) % k
+            
+            if running_sum not in mapping:
+                mapping[running_sum] = i
+            else:
+                if i - mapping[running_sum] >= 2:
+                    return True
+        
+        return False
+        
