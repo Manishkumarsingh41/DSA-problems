@@ -1,15 +1,16 @@
+from collections import defaultdict
+
 class Solution:
     def subarraySum(self, nums, k):
-        prefix_count = {0: 1}
-        prefix_sum = 0
-        count = 0
+        freq = defaultdict(int)
+        freq[0] = 1
+
+        prefix = 0
+        ans = 0
 
         for num in nums:
-            prefix_sum += num
+            prefix += num
+            ans += freq[prefix - k]
+            freq[prefix] += 1
 
-            if prefix_sum - k in prefix_count:
-                count += prefix_count[prefix_sum - k]
-
-            prefix_count[prefix_sum] = prefix_count.get(prefix_sum, 0) + 1
-
-        return count
+        return ans
