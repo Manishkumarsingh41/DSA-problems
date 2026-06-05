@@ -1,5 +1,9 @@
 class Solution(object):
     def maxSubarraySumCircular(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         total = sum(nums)
         curr_max = max_sum = nums[0]
         curr_min = min_sum = nums[0]
