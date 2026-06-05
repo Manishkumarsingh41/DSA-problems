@@ -4,12 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        max_end = 0
-        min_end = 0
-
-        max_sum = 0
-        min_sum = 0
-
+        max_end = min_end = max_sum = min_sum = 0  
         for num in nums:
             max_end = max(num, max_end + num)
             min_end = min(num, min_end + num)
