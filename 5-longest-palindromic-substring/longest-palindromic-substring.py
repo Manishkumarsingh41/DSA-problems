@@ -1,23 +1,22 @@
 class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        if not s or len(s) == 1:
-            return s
+    def longestPalindrome(self, s):
+        if not s:
+            return ""
 
-        start, end = 0, 0
+        start = 0
+        max_len = 1
+
+        def expand(l, r, start, max_len):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if r - l + 1 > max_len:
+                    max_len = r - l + 1
+                    start = l
+                l -= 1
+                r += 1
+            return start, max_len
 
         for i in range(len(s)):
-            len1 = self.expandFromMiddle(s, i, i)
-            len2 = self.expandFromMiddle(s, i, i + 1)
-            max_len = max(len1, len2)
+            start, max_len = expand(i, i, start, max_len)       
+            start, max_len = expand(i, i + 1, start, max_len)   
 
-            if max_len > (end - start):
-                start = i - (max_len - 1) // 2
-                end = i + max_len // 2
-
-        return s[start:end + 1]
-
-    def expandFromMiddle(self, s, left, right):
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left -= 1
-            right += 1
-        return right - left - 1
+        return s[start:start + max_len]
